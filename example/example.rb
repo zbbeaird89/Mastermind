@@ -18,8 +18,6 @@
 
 	- Hole
 
-	- Peg
-
 =end
 
 
