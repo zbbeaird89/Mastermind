@@ -1,5 +1,6 @@
 module Mastermind
 	class Board 
+		attr_reader :row
 		def initialize(input = {})
 			@row = input.fetch(:row, default_row)
 		end
