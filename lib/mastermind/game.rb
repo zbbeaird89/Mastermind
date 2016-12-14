@@ -10,6 +10,19 @@ module Mastermind
 			@board = board
 		end
 
+		def compare_codes(user_input, secret_code)
+			hint = create_hint(user_input, secret_code)
+			return true if hint.all? { |color| color == "Bl" }
+			return false
+		end
+
+		def play
+
+		end
+
+
+		private
+
 		def create_hint(input, secret_code)
 			array = []
 			input.each_with_index do |color, i|
@@ -19,13 +32,6 @@ module Mastermind
 			end
 			return array
 		end
-
-		def play
-
-		end
-
-
-		private
 
 		#Checks if value for hint should be either white or black
 		def hint_value(check_colors, check_positions)

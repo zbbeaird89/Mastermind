@@ -25,13 +25,13 @@ module Mastermind
 			end
 		end
 
-		context "#create_hint" do
-			it "returns correct hint" do 
+		context "#compare_codes" do
+			it "returns true if user input and secret_code are the same" do 
 				players = [bob, computer]
 				input = ["B", "R", "Y", "G"]
-				secret_code = ["B", "P", "O", "Y"] 
+				secret_code = ["B", "R", "Y", "G"] 
 				game = Game.new(players)
-				expect(game.create_hint(input, secret_code)).to eq ["Bl", "_", "W", "_"]
+				expect(game.compare_codes(input, secret_code)).to eq true
 			end
 		end
 	end

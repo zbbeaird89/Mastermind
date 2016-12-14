@@ -18,6 +18,9 @@
 
 	- Hole
 
+
+
+
 =end
 
 
@@ -29,6 +32,9 @@ puts "What is your name?"
 
 user_name = gets.chomp
 
-codemaker = Mastermind::Player.new(computer)
-codebreaker = Mastermind::Player.new(user)
-Mastermind::Game.new(Board.new).play
+human_player = Mastermind::Player.new({name: user_name, side: "Code Breaker"})
+computer = Mastermind::Player.new({name: "Computer", side: "Code Maker"})
+
+players = [human_player, computer]
+
+Mastermind::Game.new(players).play
