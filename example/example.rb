@@ -24,17 +24,8 @@
 =end
 
 
-require "../lib/mastermind.rb"
+require_relative "../lib/mastermind.rb"
 
-puts "Welcome to Mastermind!"
+player = Mastermind::Player.new({name: "Zach", side: "Code Breaker"})
 
-puts "What is your name?"
-
-user_name = gets.chomp
-
-human_player = Mastermind::Player.new({name: user_name, side: "Code Breaker"})
-computer = Mastermind::Player.new({name: "Computer", side: "Code Maker"})
-
-players = [human_player, computer]
-
-Mastermind::Game.new(players).play
+Mastermind::Game.new(player).play
