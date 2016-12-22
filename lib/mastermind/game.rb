@@ -23,9 +23,6 @@ module Mastermind
 			end
 		end
 
-
-
-
 		def create_code
 			array = []
 			4.times do 
