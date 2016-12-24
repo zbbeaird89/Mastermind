@@ -32,15 +32,15 @@ module Mastermind
 			it "returns specified 'answer' cell" do 
 				row = Row.new
 				answer = row.answer
-				answer[1].value = "B"
-				expect(row.get_cell(answer, 2).value).to eq "B"
+				answer[0].value = "B"
+				expect(row.get_cell(answer, 0).value).to eq "B"
 			end
 
 			it "returns specified 'hint' cell" do 
 				row = Row.new
 				hint = row.hint
-				hint[1].value = "Bl"
-				expect(row.get_cell(hint, 2).value).to eq "Bl"
+				hint[0].value = "Bl"
+				expect(row.get_cell(hint, 0).value).to eq "Bl"
 			end
 		end
 
@@ -48,8 +48,8 @@ module Mastermind
 			it "sets specified 'answer' cell and value" do 
 				row = Row.new
 				answer = row.answer
-				row.set_cell(answer, 1, "B")
-				expect(row.get_cell(answer, 1).value).to eq "B"
+				row.set_cell(answer, 0, "B")
+				expect(row.get_cell(answer, 0).value).to eq "B"
 			end
 		end
 

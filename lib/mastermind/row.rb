@@ -13,7 +13,7 @@ module Mastermind
 		# _ _ _ _   _ _ _ _
 
 		def get_cell(cells, position)
-			cells[position - 1]
+			cells[position]
 		end
 
 		def set_cell(cells, position, value)

@@ -26,6 +26,4 @@
 
 require_relative "../lib/mastermind.rb"
 
-player = Mastermind::Player.new({name: "Zach", side: "Code Breaker"})
-
 Mastermind::Game.new(player).play
