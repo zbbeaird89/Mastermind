@@ -2,6 +2,33 @@ require "spec_helper"
 
 module Mastermind
 	describe Game do 
+		context "#initialize" do 
+			it "doesn't raise an error" do 
+				players = [Player.new("Codemaker"), Player.new("Codebreaker")]
+				expect { Game.new(players) }.to_not raise_error
+			end
+
+			it "returns the codemaker" do 
+				user = Player.new("Codemaker")
+				computer = Player.new("Codebreaker")
+				players = [user, computer]
+				game = Game.new(players)
+				expect(game.codemaker).to eq user
+			end
+
+			it "returns the codebreaker" do 
+				user = Player.new("Codemaker")
+				computer = Player.new("Codebreaker")
+				players = [user, computer]
+				game = Game.new(players)
+				expect(game.codebreaker).to eq computer
+			end
+		end
+	end
+end
+
+=begin
+
 		context "#correct_code?" do
 			it "returns true if hint values are all 'Bl'" do 
 				input = ["B", "R", "Y", "G"]
@@ -36,15 +63,6 @@ module Mastermind
 			end
 		end	
 
-		context "#pick" do 
-			it "returns a string" do 
-				colors = ["B", "G", "P", "R", "O", "Y"]
-				array = []
-				game = Game.new
-				expect(game.pick(colors, array)).to be_a(String)
-			end
-		end
-
 		context "#get_hint" do 
 			it "returns correct hint values" do 
 				answer = "PPPP".split("")
@@ -60,5 +78,4 @@ module Mastermind
 				expect(game.get_hint(answer, secret_code)).to eq ["Bl", "_", "_", "_"]
 			end
 		end	
-	end
-end
+=end
