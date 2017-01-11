@@ -2,19 +2,21 @@ require "spec_helper"
 
 module Mastermind
 	describe Game do 
-		context "#compare_codes" do
-			it "returns true if user input and secret_code are the same" do 
+		context "#correct_code?" do
+			it "returns true if hint values are all 'Bl'" do 
 				input = ["B", "R", "Y", "G"]
+				hint = ["Bl", "Bl", "Bl", "Bl"]
 				secret_code = ["B", "R", "Y", "G"] 
 				game = Game.new
-				expect(game.compare_codes(input, secret_code)).to eq true
+				expect(game.correct_code?(input, hint, secret_code)).to eq true
 			end
 
-			it "returns hint if input and code are not the same" do 
+			it "returns false if hint values are not all 'Bl'" do 
 				input = ["G", "R", "B", "Y"]
+				hint = ["Bl", "W", "_", "_"]
 				secret_code = ["R", "O", "P", "B"]
 				game = Game.new
-				expect(game.compare_codes(input, secret_code)).to eq ["W", "W", "_", "_"]
+				expect(game.correct_code?(input, hint, secret_code)).to eq false
 			end
 		end
 
@@ -23,7 +25,7 @@ module Mastermind
 				game = Game.new 
 				secret_code = game.make_code
 				secret_code.each do |color|
-					expect(color).to be_an(String)
+					expect(color).to be_a(String)
 				end
 			end
 
@@ -34,16 +36,29 @@ module Mastermind
 			end
 		end	
 
-		context "#set_answer" do 
-			it "user input is stored in :answer" do 
+		context "#pick" do 
+			it "returns a string" do 
+				colors = ["B", "G", "P", "R", "O", "Y"]
+				array = []
 				game = Game.new
-				row = Row.new
-				input = ["B", "Y", "R", "G"]
-				game.set_answer(row, input)
-				row.answer.each_with_index do |cell, i|
-					expect(cell.value).to eq input[i]
-				end
+				expect(game.pick(colors, array)).to be_a(String)
 			end
 		end
+
+		context "#get_hint" do 
+			it "returns correct hint values" do 
+				answer = "PPPP".split("")
+				secret_code = "PBOY".split("")
+				game = Game.new
+				expect(game.get_hint(answer, secret_code)).to eq ["Bl", "W", "W", "W"]
+			end
+
+			it "returns empty array when given all wrong answers" do 
+				answer = "BYGR".split("")
+				secret_code = "BBBB".split("")
+				game = Game.new
+				expect(game.get_hint(answer, secret_code)).to eq ["Bl", "_", "_", "_"]
+			end
+		end	
 	end
 end

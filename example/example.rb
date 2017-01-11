@@ -26,4 +26,4 @@
 
 require_relative "../lib/mastermind.rb"
 
-Mastermind::Game.new(player).play
+Mastermind::Game.new().play
