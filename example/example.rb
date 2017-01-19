@@ -29,25 +29,35 @@ The hints you receive will be:
 Bl => Black
 W => White]
 
-puts "Will you be the Codemaker or the Codebreaker?"
+side = nil
 
-side = gets.chomp.capitalize
+until side == "Codemaker" || side == "Codebreaker"
+	puts ""
+	puts "Will you be the Codemaker or the Codebreaker?\n(1 for Codemaker, 2 for Codebreaker)"
+	input = gets.chomp
+	if input == "1"
+		side = "Codemaker"
+	else
+		side = "Codebreaker"
+	end
+end
+
 choices = ["Codemaker", "Codebreaker"]
 
-user = Player.new(side)
-computer = Player.new
+user = Mastermind::Player.new(name: "User", side: side)
+computer = nil
 
 #sets computer side to opposite of user
 choices.each do |string|
 	unless user.side == string
-		computer.side = string
+		computer = Mastermind::Player.new(name: "Computer", side: string)
 	end
 end 
 
 players = [user, computer]
 
 
-Mastermind::Game.new().play
+Mastermind::Game.new(players).start
 
 
 
